@@ -1,0 +1,138 @@
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    const container = document.getElementById('hero-3d-container');
+    if (!container) return; // Quitter si le conteneur n'existe pas sur la page
+
+    const scene = new THREE.Scene();
+
+    const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 100);
+    camera.position.z = 5; // Reculer la caméra
+
+    const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+
+    function updateSize() {
+        let width = container.offsetWidth;
+        let height = container.offsetHeight;
+
+        if (width === 0) width = window.innerWidth;
+        if (height === 0) height = window.innerHeight;
+
+        renderer.setSize(width, height);
+        renderer.setPixelRatio(window.devicePixelRatio);
+
+        camera.aspect = width / height;
+        camera.updateProjectionMatrix();
+    }
+
+    updateSize();
+    container.appendChild(renderer.domElement);
+
+    container.style.position = 'absolute';
+    container.style.top = '0';
+    container.style.left = '0';
+    container.style.width = '100%';
+    container.style.height = '100%';
+    container.style.zIndex = '0'; // Behind text (z-index 1)
+    container.style.pointerEvents = 'none'; // Let clicks pass through to buttons
+
+    const geometry = new THREE.BoxGeometry(2.2, 1.4, 0.1);
+
+    const material = new THREE.MeshPhysicalMaterial({
+        color: 0x2563EB,
+        metalness: 0.1,
+        roughness: 0.2,
+        transmission: 0.1, // Transparence
+        thickness: 1.0,    // Epaisseur du volume (réfraction)
+        clearcoat: 1.0,    // Vernis
+        clearcoatRoughness: 0.1,
+    });
+
+    const card = new THREE.Mesh(geometry, material);
+    scene.add(card);
+
+    
+    function createTextTexture(text) {
+        const canvas = document.createElement('canvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = 1024; // Haute résolution
+        canvas.height = 512;
+
+        ctx.fillStyle = 'rgba(255, 255, 255, 0)';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        ctx.font = 'bold 200px "Outfit", sans-serif';
+        ctx.fillStyle = 'white';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+
+        ctx.shadowColor = 'rgba(0,0,0,0.3)';
+        ctx.shadowBlur = 10;
+        ctx.shadowOffsetX = 5;
+        ctx.shadowOffsetY = 5;
+
+        ctx.fillText(text, canvas.width / 2, canvas.height / 2);
+
+        const texture = new THREE.CanvasTexture(canvas);
+        texture.minFilter = THREE.LinearFilter; // Filtre linéaire pour qualité
+        return texture;
+    }
+
+    const textGeometry = new THREE.PlaneGeometry(2.2, 1.1); // Match aspect ratio
+    const textMaterial = new THREE.MeshBasicMaterial({
+        map: createTextTexture('welcome'),
+        transparent: true,
+        opacity: 0.9,
+    });
+    const textMesh = new THREE.Mesh(textGeometry, textMaterial);
+    textMesh.position.z = 0.06; // Slightly in front of the card (half depth + tiny offset)
+    card.add(textMesh); // Parent it to the card so it rotates with it
+
+    card.rotation.x = 0.2;
+    card.rotation.y = -0.3;
+
+    card.scale.set(0.7, 0.7, 0.7);
+
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.6); // Reduced slightly for contrast
+    scene.add(ambientLight);
+
+    const directionalLight = new THREE.DirectionalLight(0xffffff, 1.0);
+    directionalLight.position.set(5, 5, 5);
+    scene.add(directionalLight);
+
+    const pointLight = new THREE.PointLight(0x60A5FA, 2.0); // Lighter Blue for highlights
+    pointLight.position.set(-2, 1, 2);
+    scene.add(pointLight);
+
+    let mouseX = 0;
+    let mouseY = 0;
+    const windowHalfX = window.innerWidth / 2;
+    const windowHalfY = window.innerHeight / 2;
+
+    document.addEventListener('mousemove', (e) => {
+        mouseX = (e.clientX - windowHalfX) / 1000;
+        mouseY = (e.clientY - windowHalfY) / 1000;
+
+        pointLight.position.x = -2 + (mouseX * 5);
+        pointLight.position.y = 1 - (mouseY * 5);
+    });
+
+    const animate = () => {
+        requestAnimationFrame(animate);
+
+        const targetRotX = 0.2 + mouseY * 1.5;
+        const targetRotY = -0.3 + mouseX * 1.5;
+
+        card.rotation.x += (targetRotX - card.rotation.x) * 0.05;
+        card.rotation.y += (targetRotY - card.rotation.y) * 0.05;
+
+        const time = Date.now() * 0.001;
+        card.position.y = 0.35 + Math.sin(time) * 0.05;
+
+        renderer.render(scene, camera);
+    };
+
+    animate();
+
+    window.addEventListener('resize', updateSize);
+});

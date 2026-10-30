@@ -1,0 +1,238 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ModernWeb - Avis Clients</title>
+    <meta name="description"
+        content="Découvrez les avis de nos clients et partagez votre expérience avec l'agence ModernWeb à Lille.">
+    <link rel="canonical" href="https://modernweb.fr/pages/avis.html">
+
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Outfit:wght@400;600;700&family=Syne:wght@700;800&display=swap"
+        rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Outfit:wght@400;600;700&family=Syne:wght@700;800&display=swap"
+            rel="stylesheet">
+    </noscript>
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+        media="print" onload="this.media='all'">
+    <noscript>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    </noscript>
+
+    
+    
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+
+    
+    <link rel="stylesheet" href="../css/cookie-consent.css" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="../css/avis.css" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="../css/wizard.css">
+
+    
+    <script src="../js/config.js" defer></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"
+        defer></script>
+</head>
+
+<body>
+
+    
+    <nav class="navbar glass-nav">
+        <div class="container nav-container">
+            <a href="../index.html" class="logo" aria-label="Retour à l'accueil ModernWeb">
+                Modern<span class="text-electric-blue">Web</span>
+            </a>
+            <div class="hamburger" role="button" aria-label="Menu principal" aria-expanded="false" tabindex="0">
+                <i class="fas fa-bars" aria-hidden="true"></i>
+            </div>
+            <ul class="nav-links nav-links-centered">
+                <li><a href="../index.html" class="nav-link">Accueil</a></li>
+                <li><a href="realisations.html" class="nav-link">Réalisations</a></li>
+                <li><a href="avis.html" class="nav-link active">Avis</a></li>
+                <li><a href="definir-mon-projet.html" class="nav-link">Mon projet</a></li>
+                <li><a href="contact.html" class="btn-glow">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        
+        <header class="reviews-header">
+            <div class="container">
+                <h1>Votre Avis <span class="text-gradient">Compte</span></h1>
+                <p class="section-subtitle">Aidez-nous à nous améliorer et partagez votre expérience.</p>
+            </div>
+        </header>
+
+        <section class="container">
+            <h2 class="sr-only">Formulaire et Liste</h2>
+            
+            <div class="review-form-container glass-card">
+                <h3 class="text-center mb-4">Laisser un avis</h3>
+                <form id="review-form">
+                    
+                    <div class="form-group" role="radiogroup" aria-labelledby="rating-lbl">
+                        <label id="rating-lbl">Note globale</label>
+                        <div class="rating-input">
+                            <input type="radio" name="rating" id="star5" value="5" required checked><label for="star5"
+                                title="Excellent"><span class="sr-only">Excellent</span><i
+                                    class="fas fa-star"></i></label>
+                            <input type="radio" name="rating" id="star4" value="4"><label for="star4"
+                                title="Très bien"><span class="sr-only">Très bien</span><i
+                                    class="fas fa-star"></i></label>
+                            <input type="radio" name="rating" id="star3" value="3"><label for="star3" title="Bien"><span
+                                    class="sr-only">Bien</span><i class="fas fa-star"></i></label>
+                            <input type="radio" name="rating" id="star2" value="2"><label for="star2"
+                                title="Moyen"><span class="sr-only">Moyen</span><i class="fas fa-star"></i></label>
+                            <input type="radio" name="rating" id="star1" value="1"><label for="star1"
+                                title="Mauvais"><span class="sr-only">Mauvais</span><i class="fas fa-star"></i></label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="name">Nom complet</label>
+                        <input type="text" id="name" name="name" class="form-control" required placeholder="Votre nom">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="role">Entreprise</label>
+                        <input type="text" id="role" name="role" class="form-control" placeholder="Ex: TechStart">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Photo de profil (Optionnel)</label>
+                        <div class="file-upload-wrapper">
+                            <input type="file" id="avatar" name="avatar" class="file-upload-input" accept="image/*">
+                            <label for="avatar" class="file-upload-label">
+                                <i class="fas fa-cloud-upload-alt"></i>
+                                <span id="file-name">Choisir une photo</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Votre message</label>
+                        <textarea id="message" name="message" class="form-control" rows="4" required
+                            placeholder="Racontez votre expérience..."></textarea>
+                    </div>
+
+                    <div class="form-group consent-group">
+                        <input type="checkbox" id="consent" name="consent" required class="consent-checkbox">
+                        <label for="consent" class="consent-label">
+                            J'accepte que mon avis et mes données soient publiés sur le site conformément à la <a
+                                href="confidentialite.html">politique de
+                                confidentialité</a>.
+                        </label>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary w-100">Publier mon avis</button>
+                </form>
+            </div>
+
+            
+            <div class="reviews-list-container">
+                <h3 class="mb-4">Derniers avis</h3>
+                <br>
+                <div id="reviews-list">
+                    
+                    <div class="text-center">
+                        <i class="fas fa-spinner fa-spin fa-2x"></i>
+                        <p>Chargement des avis...</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    
+    <div class="modal-overlay" id="success-modal" role="dialog" aria-modal="true" aria-labelledby="success-modal-title">
+        <div class="modal-content glass-card">
+            <button class="modal-close-btn" aria-label="Fermer la modale">
+                <i class="fas fa-times" aria-hidden="true"></i>
+            </button>
+
+            <div class="modal-body-content">
+                <div class="modal-icon-wrapper">
+                    <div class="modal-icon-pulse"></div>
+                    <i class="fas fa-check-circle modal-icon-main"></i>
+                </div>
+
+                <h3 class="modal-title" id="success-modal-title">Merci pour votre avis !</h3>
+                <p class="modal-message">
+                    Votre retour est précieux pour nous.<br>
+                    Il sera visible sur le site après validation.
+                </p>
+
+                <button class="btn btn-primary btn-lg w-100">
+                    Retour au site
+                </button>
+            </div>
+        </div>
+    </div>
+
+    
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <a href="../index.html" class="footer-logo"
+                        aria-label="Retour en haut de page">Modern<span>Web</span></a>
+                    <p>Agence web. Création de sites internet modernes et sur mesure pour les entreprises et
+                        particuliers.</p>
+                </div>
+                <div>
+                    <h4>Liens Rapides</h4>
+                    <ul class="footer-links">
+                        <li><a href="../index.html">Accueil</a></li>
+                        <li><a href="realisations.html">Réalisations</a></li>
+                        <li><a href="avis.html">Avis</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="mentions-legales.html">Mentions Légales</a></li>
+                        <li><a href="confidentialite.html">Confidentialité</a></li>
+                        <li><a href="#" class="js-open-cookies">Gestion des cookies</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Contact</h4>
+                    <address>
+                        <ul class="footer-links">
+                            <li><a href="mailto:contact@modernweb.fr"
+                                    aria-label="Envoyer un email à contact@modernweb.fr">contact@modernweb.fr</a></li>
+                            <li><a href="tel:+330782591597" aria-label="Appeler le +33 07 82 59 15 97">+33 07 82 59 15
+                                    97</a></li>
+                            <li><i class="fas fa-map-marker-alt footer-icon-primary"></i>Lille, Hauts-de-France</li>
+                        </ul>
+                    </address>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 ModernWeb. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    
+    <script src="../js/config.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
+    <script src="../js/supabase-client.js" defer></script>
+    <script src="../js/cookie-consent.js" defer></script>
+    <script src="../js/analytics-tracker.js" defer></script>
+    <script src="../js/script.js" defer></script>
+    <script src="../js/avis.js"></script>
+
+    <script src="https://security.modernweb.fr/tracker/security-tracker.js" data-api="https://security.modernweb.fr" data-site="modernweb.fr" defer></script>
+</body>
+
+</html>

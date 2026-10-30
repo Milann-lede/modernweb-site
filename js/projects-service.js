@@ -1,0 +1,183 @@
+
+
+const ProjectsService = (function () {
+    'use strict';
+
+    let supabaseClient = null;
+    let cachedProjects = null;
+
+    
+    function init() {
+        if (window.globalSupabaseClient) {
+            supabaseClient = window.globalSupabaseClient;
+        } else if (window.supabase && window.supabase.createClient) {
+            console.log("ProjectsService.js: Creating NEW client (Global not found or failed)...");
+            console.trace();
+            supabaseClient = window.supabase.createClient(
+                SUPABASE_CONFIG.URL,
+                SUPABASE_CONFIG.KEY
+            );
+        }
+    }
+
+    
+    async function getPublishedProjects() {
+        if (!supabaseClient) {
+            init();
+            if (!supabaseClient) {
+                console.warn('ProjectsService: Supabase non disponible');
+                return [];
+            }
+        }
+
+        try {
+            console.log('ProjectsService: Récupération des projets...');
+
+            const { data, error } = await supabaseClient
+                .from('projects')
+                .select('*')
+                .order('featured', { ascending: false })
+                .order('created_at', { ascending: false });
+
+            if (error) {
+                console.error('Erreur Supabase:', error);
+                throw error;
+            }
+
+            console.log('ProjectsService: Tous les projets bruts:', data);
+
+            const filteredProjects = (data || []).filter(p => {
+                const isPublished = p.status === 'publie';
+                const isFeatured = p.featured === true;
+                console.log(`Projet "${p.title}": status=${p.status}, featured=${p.featured}, affiché=${isPublished || isFeatured}`);
+                return isPublished || isFeatured;
+            });
+
+            console.log('ProjectsService: Projets filtrés:', filteredProjects);
+
+            cachedProjects = filteredProjects;
+            return cachedProjects;
+
+        } catch (err) {
+            console.error('Erreur chargement projets:', err);
+            return cachedProjects || [];
+        }
+    }
+
+    
+    async function getFeaturedProjects() {
+        const projects = await getPublishedProjects();
+        return projects.filter(p => p.featured);
+    }
+
+    
+    async function getProjectsByCategory(category) {
+        const projects = await getPublishedProjects();
+        return projects.filter(p => p.category === category);
+    }
+
+    
+    async function getProjectBySlug(slug) {
+        const projects = await getPublishedProjects();
+        return projects.find(p => p.slug === slug) || null;
+    }
+
+    
+    function renderProjectCard(project) {
+        const themeClass = project.theme && project.theme !== 'default' ? `project-${project.theme}` : '';
+        const projectTypeLabel = getProjectTypeLabel(project.project_type);
+        const projectId = project.id || Math.random().toString(36).substr(2, 9);
+
+        return `
+            <article class="premium-project-card ${themeClass}" data-category="${project.project_type || 'autre'}" data-project-id="${projectId}">
+                <div class="premium-project-content">
+                    <span class="premium-project-category">${projectTypeLabel}</span>
+                    <h3 class="premium-project-title">${escapeHtml(project.title)}</h3>
+                    ${project.technologies && project.technologies.length
+                ? `<div class="premium-project-features">
+                            ${project.technologies.slice(0, 3).map(tech =>
+                    `<span class="feature-tag">${escapeHtml(tech)}</span>`
+                ).join('')}
+                           </div>`
+                : ''
+            }
+                    <p class="premium-project-desc">${escapeHtml(project.short_desc || '')}</p>
+                    <div class="project-actions">
+                        ${project.link
+                ? `<a href="${project.link}" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Découvrir <i class="fas fa-arrow-right ml-2" aria-hidden="true"></i></a>`
+                : '<span class="btn btn-outline disabled">Bientôt disponible</span>'
+            }
+                        ${project.description
+                ? `<button type="button" class="btn btn-outline btn-more-info" 
+                               data-title="${escapeHtml(project.title)}"
+                               data-category="${projectTypeLabel}"
+                               data-desc="${escapeHtml(project.description)}"
+                               data-image="${project.cover_image || ''}"
+                               data-link="${project.link || ''}"
+                               data-client="${escapeHtml(project.client_name || '')}"
+                               data-techs="${project.technologies ? project.technologies.join(', ') : ''}">
+                               <i class="fas fa-info-circle" aria-hidden="true"></i> Plus d'infos
+                           </button>`
+                : ''
+            }
+                    </div>
+                </div>
+                <div class="premium-project-image">
+                    ${project.cover_image
+                ? `<img src="${project.cover_image}" alt="${escapeHtml(project.title)}" loading="lazy">`
+                : `<div class="project-placeholder">
+                        <i class="fas fa-image fa-3x" aria-hidden="true"></i>
+                   </div>`
+            }
+                </div>
+            </article>
+        `;
+    }
+
+    function escapeHtml(text) {
+        if (!text) return '';
+        const div = document.createElement('div');
+        div.textContent = text;
+        return div.innerHTML;
+    }
+
+    function getProjectTypeLabel(projectType) {
+        const labels = {
+            site_vitrine: 'Site Vitrine',
+            ecommerce: 'E-commerce',
+            portfolio: 'Portfolio',
+            gaming: 'Site Gaming',
+            application: 'Application Web',
+            immobilier: 'Immobilier',
+            autre: 'Projet Web'
+        };
+        return labels[projectType] || 'Projet';
+    }
+
+    function getCategoryLabel(category) {
+        const labels = {
+            nature: 'Nature',
+            tech: 'Tech',
+            gaming: 'Gaming',
+            construction: 'Construction',
+            autre: 'Autre'
+        };
+        return labels[category] || 'Projet';
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+    } else {
+        init();
+    }
+
+    return {
+        getPublishedProjects,
+        getFeaturedProjects,
+        getProjectsByCategory,
+        getProjectBySlug,
+        renderProjectCard
+    };
+})();
+
+window.ProjectsService = ProjectsService;

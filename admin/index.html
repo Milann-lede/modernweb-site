@@ -1,0 +1,842 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>ModernWeb - Dashboard</title>
+
+    
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com https://unpkg.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: https: blob:; connect-src 'self' https://*.supabase.co; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self';">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&display=swap" rel="stylesheet">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+        media="print" onload="this.media='all'">
+    <noscript>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    </noscript>
+
+    
+    <link rel="stylesheet" href="css/admin.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+
+<body>
+    <div class="dashboard-layout">
+        
+        <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+        
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">
+                    <span class="logo-text">Modern<span class="logo-accent">Web</span></span>
+                    <span class="logo-badge">Admin</span>
+                </div>
+            </div>
+
+            <nav class="sidebar-nav">
+                <div class="nav-section">
+                    <span class="nav-section-title">Principal</span>
+                    <a href="index.html" class="nav-item active" data-page="dashboard">
+                        <i class="fas fa-home"></i>
+                        <span>Dashboard</span>
+                    </a>
+                    <a href="#projects" class="nav-item" data-page="projects">
+                        <i class="fas fa-folder-open"></i>
+                        <span>Projets</span>
+                    </a>
+                    <a href="#briefs" class="nav-item" data-page="briefs">
+                        <i class="fas fa-file-pdf"></i>
+                        <span>Briefs clients</span>
+                        <span class="badge" id="newBriefsCount" hidden>0</span>
+                    </a>
+                    <a href="#analytics" class="nav-item" data-page="analytics">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Analytics</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <span class="nav-section-title">Contenu</span>
+                    <a href="#reviews" class="nav-item" data-page="reviews">
+                        <i class="fas fa-star"></i>
+                        <span>Avis clients</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <span class="nav-section-title">Système</span>
+                    <a href="#settings" class="nav-item" data-page="settings">
+                        <i class="fas fa-cog"></i>
+                        <span>Paramètres</span>
+                    </a>
+                </div>
+            </nav>
+
+            <div class="sidebar-footer">
+                <div class="user-menu" id="userMenu">
+                    <div class="user-avatar">M</div>
+                    <div class="user-info">
+                        <div class="user-name">Milann</div>
+                        <div class="user-role">Administrateur</div>
+                    </div>
+                    <i class="fas fa-chevron-right"></i>
+                </div>
+            </div>
+        </aside>
+
+        
+        <main class="main-content">
+            
+            <header class="main-header">
+                <div class="header-left">
+                    <button class="mobile-menu-btn" id="mobileMenuBtn">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <h1 class="page-title" id="pageTitle">Dashboard</h1>
+                </div>
+                <div class="header-right">
+                    <a href="../index.html" target="_blank" class="header-btn" title="Voir le site">
+                        <i class="fas fa-external-link-alt"></i>
+                    </a>
+                    <button type="button" class="header-btn" id="logoutBtn" title="Déconnexion">
+                        <i class="fas fa-sign-out-alt"></i>
+                    </button>
+                </div>
+            </header>
+
+            
+            <div class="page-content">
+                
+                <section id="page-dashboard" class="page-section active">
+                    
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-icon primary">
+                                <i class="fas fa-folder-open"></i>
+                            </div>
+                            <div class="stat-content">
+                                <div class="stat-value" id="statProjects">-</div>
+                                <div class="stat-label">Projets publiés</div>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon success">
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <div class="stat-content">
+                                <div class="stat-value" id="statReviews">-</div>
+                                <div class="stat-label">Avis clients</div>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon warning">
+                                <i class="fas fa-file-pdf"></i>
+                            </div>
+                            <div class="stat-content">
+                                <div class="stat-value" id="statBriefs">-</div>
+                                <div class="stat-label">Briefs reçus</div>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon info">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="stat-content">
+                                <div class="stat-value" id="statPending">-</div>
+                                <div class="stat-label">En attente</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+                    <div class="dashboard-grid">
+                        <div class="card">
+                            <div class="card-header">
+                                <h2 class="card-title">Actions rapides</h2>
+                            </div>
+                            <div class="card-body">
+                                <div class="quick-actions">
+                                    <button class="quick-action-btn" data-action="new-project">
+                                        <i class="fas fa-plus"></i>
+                                        Nouveau projet
+                                    </button>
+                                    <button class="quick-action-btn" data-action="view-briefs">
+                                        <i class="fas fa-file-pdf"></i>
+                                        Voir les briefs
+                                    </button>
+                                    <button class="quick-action-btn" data-action="view-reviews">
+                                        <i class="fas fa-star"></i>
+                                        Voir les avis
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-header">
+                                <h2 class="card-title">Derniers projets</h2>
+                            </div>
+                            <div class="card-body" id="recentProjects">
+                                <div class="loading-spinner">
+                                    <i class="fas fa-spinner fa-spin"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                
+                <section id="page-projects" class="page-section">
+                    <div class="section-header">
+                        <h2>Gestion des projets</h2>
+                        <button class="btn btn-primary" id="addProjectBtn">
+                            <i class="fas fa-plus"></i>
+                            Nouveau projet
+                        </button>
+                    </div>
+
+                    
+                    <div class="filters-bar">
+                        <div class="filter-group">
+                            <select class="form-control" id="filterStatus">
+                                <option value="">Tous les statuts</option>
+                                <option value="en_cours">En cours</option>
+                                <option value="termine">Terminé</option>
+                                <option value="publie">Publié</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <select class="form-control" id="filterCategory">
+                                <option value="">Toutes les catégories</option>
+                                <option value="nature">Nature</option>
+                                <option value="tech">Tech</option>
+                                <option value="gaming">Gaming</option>
+                                <option value="construction">Construction</option>
+                                <option value="autre">Autre</option>
+                            </select>
+                        </div>
+                        <div class="search-group">
+                            <i class="fas fa-search"></i>
+                            <input type="text" class="form-control" id="searchProjects" placeholder="Rechercher...">
+                        </div>
+                    </div>
+
+                    
+                    <div class="card">
+                        <div class="table-container">
+                            <table class="table" id="projectsTable">
+                                <thead>
+                                    <tr>
+                                        <th>Projet</th>
+                                        <th>Client</th>
+                                        <th>Statut</th>
+                                        <th>Date</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="projectsTableBody">
+                                    
+                                </tbody>
+                            </table>
+                        </div>
+                        <div id="projectsEmpty" class="empty-state" hidden>
+                            <i class="fas fa-folder-open"></i>
+                            <h3>Aucun projet</h3>
+                            <p>Commencez par créer votre premier projet</p>
+                            <button class="btn btn-primary" id="addProjectEmptyBtn">
+                                <i class="fas fa-plus"></i>
+                                Nouveau projet
+                            </button>
+                        </div>
+                    </div>
+                </section>
+
+                
+                <section id="page-briefs" class="page-section">
+                    <div class="section-header">
+                        <h2>Briefs clients</h2>
+                    </div>
+
+                    
+                    <div class="filters-bar">
+                        <div class="filter-group">
+                            <select class="form-control" id="filterBriefStatus">
+                                <option value="">Tous les statuts</option>
+                                <option value="nouveau">Nouveau</option>
+                                <option value="consulte">Consulté</option>
+                                <option value="archive">Archivé</option>
+                            </select>
+                        </div>
+                        <div class="search-group">
+                            <i class="fas fa-search"></i>
+                            <input type="text" class="form-control" id="searchBriefs"
+                                placeholder="Rechercher un client...">
+                        </div>
+                    </div>
+
+                    
+                    <div class="card">
+                        <div class="table-container">
+                            <table class="table" id="briefsTable">
+                                <thead>
+                                    <tr>
+                                        <th>Client</th>
+                                        <th>Type de projet</th>
+                                        <th>Fichier</th>
+                                        <th>Date</th>
+                                        <th>Statut</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="briefsTableBody">
+                                    
+                                </tbody>
+                            </table>
+                        </div>
+                        <div id="briefsEmpty" class="empty-state" hidden>
+                            <i class="fas fa-file-pdf"></i>
+                            <h3>Aucun brief</h3>
+                            <p>Les briefs clients apparaîtront ici</p>
+                        </div>
+                    </div>
+                </section>
+
+                
+                <section id="page-reviews" class="page-section">
+                    <div class="section-header">
+                        <h2>Avis clients</h2>
+                    </div>
+
+                    
+                    <div class="card">
+                        <div class="table-container">
+                            <table class="table" id="reviewsTable">
+                                <thead>
+                                    <tr>
+                                        <th>Client</th>
+                                        <th>Avis</th>
+                                        <th>Note</th>
+                                        <th>Date</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="reviewsTableBody">
+                                    
+                                </tbody>
+                            </table>
+                        </div>
+                        <div id="reviewsEmpty" class="empty-state" hidden>
+                            <i class="fas fa-star"></i>
+                            <h3>Aucun avis</h3>
+                            <p>Les avis clients apparaîtront ici</p>
+                        </div>
+                    </div>
+                </section>
+
+                
+                <section id="page-analytics" class="page-section">
+                    <div class="section-header">
+                        <h2>Analytics</h2>
+                        <div class="analytics-controls">
+                            <div class="analytics-live">
+                                <span class="live-dot"></span>
+                                <span id="liveVisitors">0</span> en ligne
+                            </div>
+                            <select class="form-control" id="analyticsPeriod">
+                                <option value="1h">Dernière heure</option>
+                                <option value="24h">Dernières 24h</option>
+                                <option value="7d" selected>7 derniers jours</option>
+                                <option value="30d">30 derniers jours</option>
+                                <option value="90d">90 derniers jours</option>
+                            </select>
+                            <button class="btn btn-secondary" id="analyticsRefreshBtn" title="Actualiser">
+                                <i class="fas fa-sync-alt"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div id="analyticsContent">
+                        
+                        <div class="analytics-kpis">
+                            <div class="analytics-kpi-card" id="kpiVisitors">
+                                <div class="analytics-kpi-icon"
+                                    style="background: var(--primary-light); color: var(--primary)">
+                                    <i class="fas fa-users"></i>
+                                </div>
+                                <div class="analytics-kpi-body">
+                                    <span class="analytics-kpi-label">Visiteurs uniques</span>
+                                    <span class="analytics-kpi-value">-</span>
+                                    <span class="analytics-kpi-trend neutral"><i class="fas fa-minus"></i> --</span>
+                                </div>
+                            </div>
+                            <div class="analytics-kpi-card" id="kpiPageviews">
+                                <div class="analytics-kpi-icon"
+                                    style="background: var(--info-light); color: var(--info)">
+                                    <i class="fas fa-eye"></i>
+                                </div>
+                                <div class="analytics-kpi-body">
+                                    <span class="analytics-kpi-label">Pages vues</span>
+                                    <span class="analytics-kpi-value">-</span>
+                                    <span class="analytics-kpi-trend neutral"><i class="fas fa-minus"></i> --</span>
+                                </div>
+                            </div>
+                            <div class="analytics-kpi-card" id="kpiSessions">
+                                <div class="analytics-kpi-icon"
+                                    style="background: var(--success-light); color: var(--success)">
+                                    <i class="fas fa-signal"></i>
+                                </div>
+                                <div class="analytics-kpi-body">
+                                    <span class="analytics-kpi-label">Sessions</span>
+                                    <span class="analytics-kpi-value">-</span>
+                                    <span class="analytics-kpi-trend neutral"><i class="fas fa-minus"></i> --</span>
+                                </div>
+                            </div>
+                            <div class="analytics-kpi-card" id="kpiBounceRate">
+                                <div class="analytics-kpi-icon"
+                                    style="background: var(--warning-light); color: var(--warning)">
+                                    <i class="fas fa-running"></i>
+                                </div>
+                                <div class="analytics-kpi-body">
+                                    <span class="analytics-kpi-label">Taux de rebond</span>
+                                    <span class="analytics-kpi-value">-</span>
+                                    <span class="analytics-kpi-trend neutral"><i class="fas fa-minus"></i> --</span>
+                                </div>
+                            </div>
+                            <div class="analytics-kpi-card" id="kpiAvgDuration">
+                                <div class="analytics-kpi-icon"
+                                    style="background: var(--danger-light); color: var(--danger)">
+                                    <i class="fas fa-clock"></i>
+                                </div>
+                                <div class="analytics-kpi-body">
+                                    <span class="analytics-kpi-label">Durée moyenne</span>
+                                    <span class="analytics-kpi-value">-</span>
+                                    <span class="analytics-kpi-trend neutral"><i class="fas fa-minus"></i> --</span>
+                                </div>
+                            </div>
+                            <div class="analytics-kpi-card" id="kpiPagesSession">
+                                <div class="analytics-kpi-icon"
+                                    style="background: rgba(139, 92, 246, 0.1); color: #8b5cf6">
+                                    <i class="fas fa-copy"></i>
+                                </div>
+                                <div class="analytics-kpi-body">
+                                    <span class="analytics-kpi-label">Pages / session</span>
+                                    <span class="analytics-kpi-value">-</span>
+                                </div>
+                            </div>
+                            <div class="analytics-kpi-card" id="kpiEvents">
+                                <div class="analytics-kpi-icon"
+                                    style="background: rgba(236, 72, 153, 0.1); color: #ec4899">
+                                    <i class="fas fa-bolt"></i>
+                                </div>
+                                <div class="analytics-kpi-body">
+                                    <span class="analytics-kpi-label">Événements</span>
+                                    <span class="analytics-kpi-value">-</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+                        <div class="card analytics-chart-card">
+                            <div class="card-header">
+                                <h3 class="card-title"><i class="fas fa-chart-area"></i> Trafic</h3>
+                            </div>
+                            <div class="card-body">
+                                <canvas id="visitorsChart" class="analytics-chart"></canvas>
+                            </div>
+                        </div>
+
+                        
+                        <div class="analytics-grid-2">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3 class="card-title"><i class="fas fa-file-alt"></i> Pages les plus visitées</h3>
+                                </div>
+                                <div class="card-body">
+                                    <div class="table-container">
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th>Page</th>
+                                                    <th>Vues</th>
+                                                    <th>Visiteurs</th>
+                                                    <th>Temps moy.</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="topPagesTable"></tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3 class="card-title"><i class="fas fa-share-alt"></i> Sources de trafic</h3>
+                                </div>
+                                <div class="card-body">
+                                    <div class="table-container">
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th>Source</th>
+                                                    <th>Sessions</th>
+                                                    <th>Visiteurs</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="topSourcesTable"></tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+                        <div class="analytics-grid-2">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3 class="card-title"><i class="fas fa-laptop"></i> Appareils</h3>
+                                </div>
+                                <div class="card-body">
+                                    <div id="devicesBreakdown" class="breakdown-container"></div>
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3 class="card-title"><i class="fas fa-globe"></i> Navigateurs</h3>
+                                </div>
+                                <div class="card-body">
+                                    <div id="browsersBreakdown" class="breakdown-container"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title"><i class="fas fa-bolt"></i> Événements</h3>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-container">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>Événement</th>
+                                                <th>Occurrences</th>
+                                                <th>Dernier</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="recentEventsTable"></tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title"><i class="fas fa-history"></i> Sessions récentes</h3>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-container">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>Visiteur</th>
+                                                <th>Page d'entrée</th>
+                                                <th>Pages</th>
+                                                <th>Durée</th>
+                                                <th>Statut</th>
+                                                <th>Date</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="recentSessionsTable"></tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                
+                <section id="page-settings" class="page-section">
+                    <div class="section-header">
+                        <h2>Paramètres</h2>
+                    </div>
+
+                    <div class="settings-grid">
+                        
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">
+                                    <i class="fas fa-lock"></i>
+                                    Changer le mot de passe
+                                </h3>
+                            </div>
+                            <div class="card-body">
+                                <form id="changePasswordForm">
+                                    <div class="form-group">
+                                        <label for="currentPassword">Mot de passe actuel</label>
+                                        <input type="password" id="currentPassword" class="form-control" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="newPassword">Nouveau mot de passe</label>
+                                        <input type="password" id="newPassword" class="form-control" required
+                                            minlength="8">
+                                        <span class="form-hint">Minimum 8 caractères</span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="confirmPassword">Confirmer le nouveau mot de passe</label>
+                                        <input type="password" id="confirmPassword" class="form-control" required>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">
+                                        <i class="fas fa-save"></i>
+                                        Enregistrer
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+
+                        
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">
+                                    <i class="fas fa-user"></i>
+                                    Compte administrateur
+                                </h3>
+                            </div>
+                            <div class="card-body">
+                                <div class="info-row">
+                                    <span class="info-label">Email</span>
+                                    <span class="info-value" id="adminEmail">Compte administrateur</span>
+                                </div>
+                                <div class="info-row">
+                                    <span class="info-label">Dernière connexion</span>
+                                    <span class="info-value" id="lastLogin">-</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    
+    <div class="modal-overlay" id="projectModal">
+        <div class="modal modal-lg">
+            <div class="modal-header">
+                <h2 class="modal-title" id="projectModalTitle">Nouveau projet</h2>
+                <button class="modal-close" id="projectModalClose">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="projectForm">
+                    <input type="hidden" id="projectId">
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="projectName">Nom du projet *</label>
+                            <input type="text" id="projectName" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="projectSlug">Slug (URL)</label>
+                            <input type="text" id="projectSlug" class="form-control" placeholder="mon-projet">
+                            <span class="form-hint">Généré automatiquement si vide</span>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="projectClientType">Type de client</label>
+                            <select id="projectClientType" class="form-control">
+                                <option value="particulier">Particulier</option>
+                                <option value="professionnel">Professionnel</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="projectType">Type de projet</label>
+                            <select id="projectType" class="form-control">
+                                <option value="site_vitrine">Site Vitrine</option>
+                                <option value="ecommerce">E-commerce</option>
+                                <option value="portfolio">Portfolio</option>
+                                <option value="gaming">Site Gaming</option>
+                                <option value="application">Application Web</option>
+                                <option value="immobilier">Immobilier</option>
+                                <option value="autre">Autre</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="projectCategory">Thème visuel</label>
+                            <select id="projectCategory" class="form-control">
+                                <option value="auto" selected>🪄 Automatique (analyse de l'image)</option>
+                                <optgroup label="🌈 Thèmes Clairs">
+                                    <option value="nature">🌿 Nature (vert frais)</option>
+                                    <option value="ocean">🌊 Ocean (bleu profond)</option>
+                                    <option value="arctic">❄️ Arctic (bleu glacé)</option>
+                                    <option value="sunset">🌅 Sunset (orange/rose)</option>
+                                    <option value="coral">🪸 Coral (rose vif)</option>
+                                    <option value="rose">🌸 Rose (rose poudré)</option>
+                                    <option value="lavender">💜 Lavender (lavande)</option>
+                                    <option value="gold">✨ Gold (doré luxe)</option>
+                                    <option value="electric">⚡ Electric (jaune vif)</option>
+                                    <option value="minimal">◻️ Minimal (blanc épuré)</option>
+                                    <option value="earth">🏜️ Earth (terre/brun)</option>
+                                    <option value="vintage">📜 Vintage (sépia rétro)</option>
+                                </optgroup>
+                                <optgroup label="🌙 Thèmes Sombres">
+                                    <option value="tech">💼 Tech (bordeaux chic)</option>
+                                    <option value="dark">🖤 Dark (noir premium)</option>
+                                    <option value="forest">🌲 Forest (vert foncé)</option>
+                                    <option value="midnight">🌌 Midnight (bleu nuit)</option>
+                                    <option value="fire">🔥 Fire (rouge énergie)</option>
+                                    <option value="gaming">🎮 Gaming (néon violet)</option>
+                                    <option value="neon">💎 Neon (cyan/magenta)</option>
+                                </optgroup>
+                                <optgroup label="📦 Classiques">
+                                    <option value="default">🔵 Standard (bleu)</option>
+                                    <option value="construction">🏗️ Construction (orange)</option>
+                                </optgroup>
+                            </select>
+                            <small class="form-hint" id="themeHint">En mode auto, le thème est suggéré selon les
+                                couleurs de l'image</small>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="projectShortDesc">Description courte</label>
+                        <input type="text" id="projectShortDesc" class="form-control" maxlength="200">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="projectFullDesc">Description complète</label>
+                        <textarea id="projectFullDesc" class="form-control" rows="4"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="projectTechnologies">Technologies (séparées par des virgules)</label>
+                        <input type="text" id="projectTechnologies" class="form-control"
+                            placeholder="HTML, CSS, JavaScript">
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="projectDate">Date du projet</label>
+                            <input type="date" id="projectDate" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="projectStatus">Statut</label>
+                            <select id="projectStatus" class="form-control">
+                                <option value="en_cours">En cours</option>
+                                <option value="termine">Terminé</option>
+                                <option value="publie">Publié</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="projectLink">Lien externe</label>
+                        <input type="url" id="projectLink" class="form-control" placeholder="https://...">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Image principale</label>
+                        <div class="file-upload" id="thumbnailUpload">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                            <p>Glissez une image ou cliquez pour sélectionner</p>
+                            <input type="file" id="projectThumbnail" accept="image/*">
+                        </div>
+                        <div id="thumbnailPreview" class="thumbnail-preview" hidden></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-check">
+                            <input type="checkbox" id="projectFeatured">
+                            Mettre en avant sur la page d'accueil
+                        </label>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" id="projectModalCancel">Annuler</button>
+                <button type="submit" form="projectForm" class="btn btn-primary" id="projectModalSave">
+                    <i class="fas fa-save"></i>
+                    Enregistrer
+                </button>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="modal-overlay" id="deleteModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h2 class="modal-title">Confirmer la suppression</h2>
+                <button class="modal-close" id="deleteModalClose">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p id="deleteModalText">Êtes-vous sûr de vouloir supprimer cet élément ?</p>
+                <p class="text-muted">Cette action est irréversible.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" id="deleteModalCancel">Annuler</button>
+                <button type="button" class="btn btn-danger" id="deleteModalConfirm">
+                    <i class="fas fa-trash"></i>
+                    Supprimer
+                </button>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="modal-overlay" id="logoutModal" hidden>
+        <div class="modal-dialog modal-sm">
+            <div class="modal-header">
+                <h3><i class="fas fa-sign-out-alt"></i> Déconnexion</h3>
+            </div>
+            <div class="modal-body text-center">
+                <p>Voulez-vous vraiment vous déconnecter ?</p>
+            </div>
+            <div class="modal-footer" style="justify-content: center; gap: 12px;">
+                <button type="button" class="btn btn-secondary" id="logoutCancelBtn">Annuler</button>
+                <button type="button" class="btn btn-danger" id="logoutConfirmBtn">Se déconnecter</button>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="toast-container" id="toastContainer"></div>
+
+    
+    
+    
+    <script src="/js/config.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/admin-auth.js"></script>
+    <script src="js/admin-toast.js"></script>
+    <script src="js/admin-projects.js"></script>
+    <script src="js/admin-briefs.js"></script>
+    <script src="js/admin-reviews.js"></script>
+    <script src="js/admin-analytics.js"></script>
+    <script src="js/dashboard.js"></script>
+</body>
+
+</html>

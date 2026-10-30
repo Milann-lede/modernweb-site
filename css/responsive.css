@@ -1,0 +1,1358 @@
+
+
+@media (min-width: 2560px) {
+    :root {
+        --container-width: 1600px;
+    }
+
+    h1 {
+        font-size: 5rem;
+    }
+
+    h2 {
+        font-size: 3.5rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1.5rem;
+    }
+
+    .services-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .footer-grid {
+        grid-template-columns: repeat(5, 1fr);
+    }
+}
+
+@media (min-width: 1920px) and (max-width: 2559px) {
+    :root {
+        --container-width: 1400px;
+    }
+
+    .services-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+@media (min-width: 1440px) and (max-width: 1919px) {
+    :root {
+        --container-width: 1280px;
+    }
+}
+
+@media (min-width: 1200px) and (max-width: 1439px) {
+    :root {
+        --container-width: 1140px;
+    }
+
+    .project-card-sticky {
+        height: 450px;
+    }
+
+    .project-info {
+        padding: 2.5rem;
+    }
+}
+
+@media (min-width: 1024px) and (max-width: 1199px) {
+    :root {
+        --container-width: 960px;
+    }
+
+    .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .project-card-sticky {
+        height: 420px;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .project-info {
+        padding: 2rem;
+    }
+
+    .project-title {
+        font-size: 1.75rem;
+    }
+
+    .marketing-card {
+        max-width: 100%;
+    }
+
+    .card-content {
+        padding: 2.5rem;
+    }
+}
+
+@media (min-width: 900px) and (max-width: 1023px) {
+    :root {
+        --header-height: 70px;
+    }
+
+    .nav-links {
+        gap: 1.5rem;
+    }
+
+    .nav-link {
+        font-size: 0.9rem;
+    }
+
+    .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+    }
+
+    .project-card-sticky {
+        height: 400px;
+    }
+
+    .footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 768px) and (max-width: 899px) {
+    :root {
+        --header-height: 70px;
+    }
+
+    
+    .hamburger {
+        display: block;
+    }
+
+    .nav-links {
+        
+        position: fixed;
+        top: 15px;
+        right: 15px;
+        width: auto;
+        min-width: 220px;
+        max-width: 280px;
+        height: auto;
+        background: rgba(255, 255, 255, 0.98);
+        backdrop-filter: blur(20px);
+        border-radius: 24px;
+        flex-direction: column;
+        padding: 1.5rem;
+        gap: 0.75rem;
+        transform-origin: top right;
+        transform: scale(0);
+        opacity: 0;
+        visibility: hidden;
+        transition: 
+            transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+            opacity 0.25s ease;
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    }
+
+    .nav-links.active {
+        transform: scale(1);
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .nav-link {
+        font-size: 1.25rem;
+    }
+
+    
+    .hero {
+        padding-top: calc(var(--header-height) + 40px);
+        padding-bottom: 60px;
+    }
+
+    h1 {
+        font-size: 2.75rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1.1rem;
+    }
+
+    
+    .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+    }
+
+    .service-card {
+        padding: 2rem;
+    }
+
+    
+    .marketing-card {
+        flex-direction: column;
+    }
+
+    .card-image {
+        height: 300px;
+    }
+
+    .card-content {
+        padding: 2.5rem;
+    }
+
+    
+    .project-card-sticky {
+        grid-template-columns: 1fr;
+        height: auto;
+    }
+
+    .project-image {
+        height: 280px;
+    }
+
+    .project-info {
+        padding: 2rem;
+    }
+
+    
+    .footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+    }
+
+    
+    .team-card {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .team-card.reverse {
+        flex-direction: column;
+    }
+}
+
+@media (min-width: 600px) and (max-width: 767px) {
+    :root {
+        --header-height: 65px;
+    }
+
+    
+    .hamburger {
+        display: block;
+    }
+
+    .nav-links {
+        
+        position: fixed;
+        top: 15px;
+        right: 15px;
+        width: auto;
+        min-width: 200px;
+        max-width: 260px;
+        height: auto;
+        background: rgba(255, 255, 255, 0.98);
+        backdrop-filter: blur(20px);
+        border-radius: 20px;
+        flex-direction: column;
+        padding: 1.25rem;
+        gap: 0.5rem;
+        transform-origin: top right;
+        transform: scale(0);
+        opacity: 0;
+        visibility: hidden;
+        transition: 
+            transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+            opacity 0.25s ease;
+        box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.25);
+    }
+
+    .nav-links.active {
+        transform: scale(1);
+        opacity: 1;
+        visibility: visible;
+    }
+
+    
+    h1 {
+        font-size: 2.25rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1rem;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+
+    .btn {
+        width: 100%;
+    }
+
+    
+    .services-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+    }
+
+    .service-card {
+        padding: 1.5rem;
+    }
+
+    .service-icon {
+        width: 50px;
+        height: 50px;
+        font-size: 1.25rem;
+    }
+
+    .service-card h3 {
+        font-size: 1.25rem;
+    }
+
+    
+    .marketing-card {
+        flex-direction: column;
+    }
+
+    .card-image {
+        height: 250px;
+    }
+
+    .card-content {
+        padding: 2rem;
+    }
+
+    .card-content h3 {
+        font-size: 1.5rem;
+    }
+
+    
+    .projects-grid-home {
+        grid-template-columns: 1fr;
+    }
+
+    .project-card-sticky {
+        grid-template-columns: 1fr;
+        height: auto;
+    }
+
+    .project-image {
+        height: 250px;
+    }
+
+    
+    .footer-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    
+    .cta-project-card {
+        padding: 40px 24px;
+    }
+
+    .cta-benefits {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+}
+
+@media (min-width: 480px) and (max-width: 599px) {
+    :root {
+        --header-height: 60px;
+    }
+
+    .container {
+        padding: 0 1rem;
+    }
+
+    
+    .hero {
+        padding-top: calc(var(--header-height) + 30px);
+        padding-bottom: 50px;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    h2 {
+        font-size: 1.75rem;
+    }
+
+    .hero-subtitle {
+        font-size: 0.95rem;
+    }
+
+    
+    .services-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .service-card {
+        padding: 1.5rem;
+        display: flex;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+
+    .service-icon {
+        margin-bottom: 0;
+        flex-shrink: 0;
+    }
+
+    .service-card h3 {
+        font-size: 1.15rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .service-card p {
+        font-size: 0.9rem;
+        margin-bottom: 0;
+    }
+
+    
+    .card-image {
+        height: 220px;
+    }
+
+    .card-content {
+        padding: 1.5rem;
+    }
+
+    .card-number {
+        width: 35px;
+        height: 35px;
+        font-size: 1rem;
+    }
+
+    .card-content h3 {
+        font-size: 1.35rem;
+    }
+
+    
+    .project-image {
+        height: 220px;
+    }
+
+    .project-info {
+        padding: 1.5rem;
+    }
+
+    .project-title {
+        font-size: 1.5rem;
+    }
+
+    .project-desc {
+        font-size: 0.95rem;
+    }
+
+    
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        text-align: center;
+    }
+
+    .footer-grid h4 {
+        margin-bottom: 1rem;
+    }
+
+    
+    .team-member-img-wrapper {
+        width: 120px;
+        height: 120px;
+    }
+
+    .team-info h3 {
+        font-size: 1.25rem;
+    }
+}
+
+@media (min-width: 375px) and (max-width: 479px) {
+    :root {
+        --header-height: 60px;
+    }
+
+    .container {
+        padding: 0 1rem;
+    }
+
+    
+    .logo {
+        font-size: 1.3rem;
+    }
+
+    
+    .hero {
+        padding-top: calc(var(--header-height) + 25px);
+        padding-bottom: 40px;
+    }
+
+    h1 {
+        font-size: 1.85rem;
+        line-height: 1.15;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+
+    .hero-subtitle {
+        font-size: 0.9rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+
+    .btn {
+        padding: 14px 24px;
+        font-size: 0.95rem;
+    }
+
+    
+    .section-padding {
+        padding: 50px 0;
+    }
+
+    
+    .services-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        margin-top: 2rem;
+    }
+
+    .service-card {
+        padding: 1.25rem;
+    }
+
+    .service-icon {
+        width: 45px;
+        height: 45px;
+        font-size: 1.1rem;
+        margin-bottom: 1rem;
+    }
+
+    .service-card h3 {
+        font-size: 1.1rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .service-card p {
+        font-size: 0.85rem;
+    }
+
+    
+    .marketing-grid {
+        gap: 2rem;
+    }
+
+    .card-image {
+        height: 200px;
+        min-height: 200px;
+    }
+
+    .card-content {
+        padding: 1.25rem;
+    }
+
+    .card-number {
+        width: 32px;
+        height: 32px;
+        font-size: 0.9rem;
+        margin-bottom: 1rem;
+    }
+
+    .card-content h3 {
+        font-size: 1.25rem;
+        margin-bottom: 1rem;
+    }
+
+    .card-content ul li {
+        font-size: 0.9rem;
+        margin-bottom: 0.35rem;
+    }
+
+    
+    .portfolio-header-wrapper {
+        padding-bottom: 320px;
+        margin-bottom: -320px;
+    }
+
+    .project-card-sticky {
+        height: auto;
+        margin-bottom: 2rem;
+    }
+
+    .project-image {
+        height: 200px;
+    }
+
+    .project-info {
+        padding: 1.25rem;
+    }
+
+    .project-category {
+        font-size: 0.75rem;
+    }
+
+    .project-title {
+        font-size: 1.35rem;
+        margin-bottom: 0.75rem;
+    }
+
+    .project-desc {
+        font-size: 0.9rem;
+        margin-bottom: 1.5rem;
+    }
+
+    
+    .cta-project-card {
+        padding: 30px 20px;
+        border-radius: 16px;
+    }
+
+    .cta-badge {
+        font-size: 0.75rem;
+        padding: 6px 12px;
+    }
+
+    .cta-title {
+        font-size: 1.5rem;
+    }
+
+    .cta-description {
+        font-size: 1rem;
+    }
+
+    .btn-cta-project {
+        padding: 14px 24px;
+        font-size: 1rem;
+    }
+
+    
+    footer {
+        padding: 40px 0 20px;
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        text-align: center;
+    }
+
+    .footer-logo {
+        justify-content: center;
+    }
+
+    .footer-grid h4 {
+        font-size: 1rem;
+    }
+
+    .footer-links a {
+        font-size: 0.9rem;
+    }
+
+    
+    .team-card {
+        padding: 1.5rem;
+        gap: 1rem;
+    }
+
+    .team-member-img-wrapper {
+        width: 100px;
+        height: 100px;
+    }
+
+    .team-info h3 {
+        font-size: 1.15rem;
+    }
+
+    .team-role {
+        font-size: 0.8rem;
+    }
+
+    .team-desc {
+        font-size: 0.85rem;
+    }
+
+    
+    .philosophy-pillars {
+        flex-direction: column;
+        gap: 1rem;
+        align-items: center;
+    }
+
+    
+    .blob {
+        opacity: 0.2;
+    }
+
+    .blob-1 {
+        width: 300px;
+        height: 300px;
+    }
+
+    .blob-2 {
+        width: 250px;
+        height: 250px;
+    }
+}
+
+@media (max-width: 374px) {
+    html {
+        font-size: 14px;
+    }
+
+    :root {
+        --header-height: 55px;
+    }
+
+    .container {
+        padding: 0 0.75rem;
+    }
+
+    
+    .logo {
+        font-size: 1.2rem;
+    }
+
+    .hamburger {
+        font-size: 1.25rem;
+    }
+
+    
+    .hero {
+        padding-top: calc(var(--header-height) + 20px);
+        padding-bottom: 30px;
+    }
+
+    h1 {
+        font-size: 1.6rem;
+    }
+
+    h2 {
+        font-size: 1.35rem;
+    }
+
+    .hero-subtitle {
+        font-size: 0.9rem;
+    }
+
+    .btn {
+        padding: 12px 20px;
+        font-size: 0.9rem;
+    }
+
+    
+    .section-padding {
+        padding: 40px 0;
+    }
+
+    
+    .service-card {
+        padding: 1rem;
+    }
+
+    .service-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+    }
+
+    .service-card h3 {
+        font-size: 1rem;
+    }
+
+    .service-card p {
+        font-size: 0.9rem;
+    }
+
+    
+    .card-image {
+        height: 180px;
+        min-height: 180px;
+    }
+
+    .card-content {
+        padding: 1rem;
+    }
+
+    .card-content h3 {
+        font-size: 1.1rem;
+    }
+
+    
+    .project-image {
+        height: 180px;
+    }
+
+    .project-info {
+        padding: 1rem;
+    }
+
+    .project-title {
+        font-size: 1.2rem;
+    }
+
+    .project-desc {
+        font-size: 0.9rem;
+    }
+
+    
+    .cta-project-card {
+        padding: 25px 15px;
+    }
+
+    .cta-title {
+        font-size: 1.35rem;
+    }
+
+    .cta-description {
+        font-size: 0.9rem;
+    }
+
+    .btn-cta-project {
+        padding: 12px 20px;
+        font-size: 0.9rem;
+    }
+
+    
+    footer {
+        padding: 30px 0 15px;
+    }
+
+    .footer-grid {
+        gap: 1.5rem;
+    }
+
+    
+    .blob {
+        display: none;
+    }
+
+    
+    .float-icon {
+        display: none;
+    }
+}
+
+@media (max-width: 900px) and (orientation: landscape) {
+    .hero {
+        padding-top: calc(var(--header-height) + 20px);
+        padding-bottom: 30px;
+        min-height: auto;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    .hero-subtitle {
+        font-size: 0.95rem;
+        margin-bottom: 1rem;
+    }
+
+    .hero-buttons {
+        flex-direction: row;
+        justify-content: center;
+    }
+
+    .btn {
+        width: auto;
+    }
+
+    .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .marketing-card {
+        flex-direction: row;
+    }
+
+    .card-image {
+        width: 40%;
+        height: 250px;
+    }
+
+    .card-content {
+        width: 60%;
+    }
+
+    
+    .nav-links {
+        padding-top: 4rem;
+    }
+
+    .nav-links.active {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        gap: 1.5rem;
+    }
+
+    .nav-link {
+        font-size: 1rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+
+    .blob {
+        display: none;
+    }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    :focus-visible {
+        outline: 2px solid var(--primary);
+        outline-offset: 2px;
+    }
+}
+
+@media (hover: none) and (pointer: coarse) {
+    
+    .btn {
+        min-height: 48px;
+    }
+
+    .nav-link {
+        padding: 12px 0;
+    }
+
+    .hamburger {
+        padding: 10px;
+        min-width: 44px;
+        min-height: 44px;
+    }
+
+    
+    .service-card:hover,
+    .marketing-card:hover,
+    .project-card-home:hover,
+    .team-card:hover {
+        transform: none;
+    }
+
+    
+    html {
+        -webkit-overflow-scrolling: touch;
+    }
+}
+
+@supports (padding: env(safe-area-inset-bottom)) {
+    .navbar {
+        padding-top: env(safe-area-inset-top);
+    }
+
+    footer {
+        padding-bottom: calc(20px + env(safe-area-inset-bottom));
+    }
+
+    .nav-links {
+        padding-left: env(safe-area-inset-left);
+        padding-right: env(safe-area-inset-right);
+    }
+}
+
+@media print {
+    .navbar,
+    .hamburger,
+    .blob,
+    .floating-icons,
+    .cta-project-section {
+        display: none !important;
+    }
+
+    body {
+        background: white;
+        color: black;
+    }
+
+    .hero {
+        padding-top: 20px;
+    }
+
+    a {
+        color: black;
+        text-decoration: underline;
+    }
+
+    .btn {
+        border: 1px solid black;
+        background: none;
+        color: black;
+    }
+}
+
+@media (max-width: 1024px) {
+    .wizard-section {
+        padding-top: calc(var(--header-height) + 30px);
+        padding-bottom: 30px;
+        min-height: 100vh;
+        min-height: 100dvh;
+    }
+}
+
+@media (max-width: 768px) {
+    .wizard-section {
+        padding-top: calc(var(--header-height) + 25px);
+        padding-bottom: 25px;
+        align-items: flex-start !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .wizard-section {
+        padding-top: calc(var(--header-height) + 20px);
+        padding-bottom: 20px;
+    }
+}
+
+@media (max-width: 374px) {
+    .wizard-section {
+        padding-top: calc(var(--header-height) + 15px);
+        padding-bottom: 15px;
+    }
+}
+
+@media (max-width: 1024px) {
+    .wizard-card {
+        padding: 1.5rem !important;
+    }
+    
+    .options-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .wizard-card {
+        padding: 1.25rem !important;
+        margin: 0 0.5rem;
+    }
+    
+    .wizard-step h3 {
+        font-size: 1.25rem;
+    }
+    
+    .options-list {
+        grid-template-columns: 1fr !important;
+    }
+    
+    .estimation-container {
+        grid-template-columns: 1fr !important;
+    }
+    
+    .estimation-card {
+        padding: 1.25rem;
+    }
+    
+    .estimation-icon {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .estimation-value {
+        font-size: 1.2rem;
+    }
+    
+    .estimation-note {
+        flex-direction: column;
+        text-align: center;
+        font-size: 0.95rem;
+        padding: 1rem;
+    }
+    
+    .wizard-nav {
+        flex-direction: column-reverse;
+        gap: 0.75rem;
+    }
+    
+    .wizard-nav .btn {
+        width: 100%;
+    }
+}
+
+@media (max-width: 600px) {
+    .wizard-card {
+        padding: 1rem !important;
+        border-radius: 12px !important;
+        margin: 0;
+    }
+    
+    .wizard-step h3 {
+        font-size: 1.15rem;
+        margin-bottom: 1rem;
+    }
+    
+    .options-grid {
+        grid-template-columns: 1fr 1fr !important;
+        gap: 0.75rem !important;
+    }
+    
+    .option-content {
+        padding: 1rem !important;
+    }
+    
+    .option-content i {
+        font-size: 1.5rem;
+    }
+    
+    .option-content span {
+        font-size: 0.85rem;
+    }
+    
+    .checkbox-option {
+        padding: 0.75rem;
+        font-size: 0.9rem;
+    }
+    
+    .form-input {
+        padding: 12px !important;
+        font-size: 16px; 
+    }
+    
+    .estimation-details {
+        padding: 1rem;
+    }
+    
+    .estimation-details li {
+        flex-direction: column;
+        gap: 0.25rem;
+        text-align: left;
+    }
+    
+    .estimation-details li span:last-child {
+        text-align: right;
+    }
+}
+
+@media (max-width: 374px) {
+    .wizard-card {
+        padding: 0.75rem !important;
+    }
+    
+    .wizard-step h3 {
+        font-size: 1rem;
+    }
+    
+    .options-grid {
+        grid-template-columns: 1fr !important;
+        gap: 0.5rem !important;
+    }
+    
+    .option-content {
+        flex-direction: row !important;
+        justify-content: flex-start;
+        text-align: left;
+        padding: 0.75rem !important;
+    }
+    
+    .option-content i {
+        font-size: 1.25rem;
+        width: 30px;
+    }
+    
+    .estimation-card {
+        padding: 1rem;
+    }
+    
+    .estimation-icon {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .estimation-icon i {
+        font-size: 1rem;
+    }
+    
+    .estimation-value {
+        font-size: 1.1rem;
+    }
+    
+    .btn {
+        padding: 12px 16px !important;
+        font-size: 0.9rem !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .contact-form,
+    .form-container {
+        padding: 1.5rem;
+    }
+    
+    .form-group {
+        margin-bottom: 1rem;
+    }
+    
+    .form-group label {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .contact-form,
+    .form-container {
+        padding: 1rem;
+        border-radius: 12px;
+    }
+    
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+        font-size: 16px; 
+        padding: 12px;
+    }
+}
+
+@media (max-width: 768px) {
+    .reviews-grid {
+        grid-template-columns: 1fr !important;
+    }
+    
+    #reviews-list {
+        grid-template-columns: 1fr !important;
+    }
+    
+    .review-card {
+        padding: 1.5rem;
+    }
+    
+    .review-form-container {
+        padding: 1.5rem;
+    }
+    
+    .review-item {
+        padding: 1.5rem;
+    }
+    
+    .review-header {
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+        text-align: center;
+    }
+    
+    .review-header > div:first-child,
+    .review-header-left {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .review-stars {
+        align-self: center;
+    }
+    
+    .review-author {
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .review-card {
+        padding: 1rem;
+    }
+    
+    .review-item {
+        padding: 1rem;
+    }
+    
+    .review-stars {
+        font-size: 0.8rem;
+        padding: 4px 8px;
+        align-self: center;
+        gap: 2px;
+    }
+    
+    .review-author h4 {
+        font-size: 1rem;
+    }
+    
+    .review-author {
+        font-size: 0.9rem;
+    }
+    
+    .review-content {
+        font-size: 0.95rem;
+    }
+    
+    .rating-input label {
+        font-size: clamp(1.4rem, 7vw, 2rem);
+    }
+    
+    .rating-input {
+        gap: clamp(6px, 2vw, 10px);
+        padding: clamp(8px, 2vw, 12px);
+        justify-content: center;
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 374px) {
+    .rating-input label {
+        font-size: 1.3rem;
+    }
+    
+    .rating-input {
+        gap: 5px;
+        padding: 8px;
+        max-width: 100%;
+    }
+    
+    .review-stars {
+        font-size: 0.75rem;
+        padding: 3px 6px;
+        gap: 1px;
+    }
+    
+    .review-item {
+        padding: 0.75rem;
+    }
+    
+    .review-form-container {
+        padding: 0.75rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .legal-content {
+        padding: 1.5rem !important;
+    }
+    
+    .legal-content h1 {
+        font-size: 1.75rem;
+    }
+    
+    .legal-content h2 {
+        font-size: 1.25rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .legal-content {
+        padding: 1rem !important;
+        border-radius: 12px !important;
+    }
+    
+    .legal-content h1 {
+        font-size: 1.5rem;
+    }
+    
+    .legal-content p,
+    .legal-content li {
+        font-size: 0.9rem;
+    }
+}

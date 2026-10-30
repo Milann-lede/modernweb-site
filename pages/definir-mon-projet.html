@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+    <title>ModernWeb - Définir mon projet</title>
+    <meta name="description"
+        content="Définissez votre projet web en quelques clics. Recevez une recommandation personnalisée et une estimation gratuite.">
+    <link rel="canonical" href="https://modernweb.fr/pages/definir-mon-projet.html">
+    <meta name="theme-color" content="#2563EB">
+
+    
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    <link rel="icon" type="image/webp" sizes="32x32" href="../images/favicon-32x32.webp">
+    <link rel="icon" type="image/webp" sizes="16x16" href="../images/favicon-16x16.webp">
+    <link rel="apple-touch-icon" sizes="180x180" href="../images/apple-touch-icon.webp">
+    <link rel="manifest" href="../manifest.json">
+
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Outfit:wght@400;600;700&family=Syne:wght@700;800&display=swap"
+        rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Outfit:wght@400;600;700&family=Syne:wght@700;800&display=swap"
+            rel="stylesheet">
+    </noscript>
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+        media="print" onload="this.media='all'">
+    <noscript>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    </noscript>
+
+    
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <link rel="stylesheet" href="../css/cookie-consent.css">
+    <link rel="stylesheet" href="../css/wizard.css">
+
+    
+    <script src="../js/config.js" defer></script>
+    <script src="../js/project-wizard.js" defer></script>
+    
+</head>
+
+<body>
+
+    
+    <nav class="navbar glass-nav">
+        <div class="container nav-container">
+            <a href="../index.html" class="logo">
+                Modern<span class="text-electric-blue">Web</span>
+            </a>
+            <div class="hamburger" role="button" aria-label="Menu principal" aria-expanded="false" tabindex="0">
+                <i class="fas fa-bars" aria-hidden="true"></i>
+            </div>
+            <ul class="nav-links nav-links-centered">
+                <li><a href="../index.html" class="nav-link">Accueil</a></li>
+                <li><a href="realisations.html" class="nav-link">Réalisations</a></li>
+                <li><a href="avis.html" class="nav-link">Avis</a></li>
+                <li><a href="definir-mon-projet.html" class="nav-link active">Mon projet</a></li>
+                <li><a href="contact.html" class="btn-glow">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        
+        <section class="wizard-section">
+            <div class="container wizard-container">
+
+                <div class="text-center mb-5">
+                    <h1>Définissons votre <span class="text-gradient">Projet Idéal</span></h1>
+                    <p class="hero-subtitle">Répondez à ces questions pour créer le cahier des charges de votre futur
+                        site.</p>
+                </div>
+
+                
+                <div class="wizard-card">
+
+                    
+                    <div class="progress-container">
+                        <div class="progress-bar-bg">
+                            <div id="progress-bar"
+                                class="progress-bar-fill">
+                            </div>
+                        </div>
+                        <div class="text-right step-info">
+                            Étape <span id="current-step-display">1</span>/<span id="total-steps-display">8</span>
+                        </div>
+                    </div>
+
+                    
+                    <form id="project-wizard-form">
+
+                        
+                        <div class="wizard-step active" data-step="1">
+                            <h2>Quel est l'objectif principal de votre site ?</h2>
+                            <div class="options-grid">
+                                <label class="option-card">
+                                    <input type="radio" name="project_type" value="Site Vitrine" checked>
+                                    <div class="option-content">
+                                        <i class="fas fa-store"></i>
+                                        <span>Présenter mon activité</span>
+                                    </div>
+                                </label>
+                                <label class="option-card">
+                                    <input type="radio" name="project_type" value="E-commerce">
+                                    <div class="option-content">
+                                        <i class="fas fa-shopping-cart"></i>
+                                        <span>Vendre en ligne</span>
+                                    </div>
+                                </label>
+                                <label class="option-card">
+                                    <input type="radio" name="project_type" value="Portfolio">
+                                    <div class="option-content">
+                                        <i class="fas fa-camera"></i>
+                                        <span>Montrer mes créations</span>
+                                    </div>
+                                </label>
+                                <label class="option-card">
+                                    <input type="radio" name="project_type" value="Blog/Média">
+                                    <div class="option-content">
+                                        <i class="fas fa-newspaper"></i>
+                                        <span>Publier du contenu</span>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+
+                        
+                        <div class="wizard-step" data-step="2">
+                            <h2>Dans quel secteur d'activité êtes-vous ?</h2>
+                            <div class="options-grid">
+                                <label class="option-card">
+                                    <input type="radio" name="sector" value="Commerce / Retail" checked>
+                                    <div class="option-content">
+                                        <i class="fas fa-shopping-bag"></i>
+                                        <span>Commerce / Retail</span>
+                                    </div>
+                                </label>
+                                <label class="option-card">
+                                    <input type="radio" name="sector" value="Restauration / Hôtellerie">
+                                    <div class="option-content">
+                                        <i class="fas fa-utensils"></i>
+                                        <span>Restauration / Hôtellerie</span>
+                                    </div>
+                                </label>
+                                <label class="option-card">
+                                    <input type="radio" name="sector" value="Services aux entreprises">
+                                    <div class="option-content">
+                                        <i class="fas fa-briefcase"></i>
+                                        <span>Services aux entreprises</span>
+                                    </div>
+                                </label>
+                                <label class="option-card">
+                                    <input type="radio" name="sector" value="Artisanat / BTP">
+                                    <div class="option-content">
+                                        <i class="fas fa-hard-hat"></i>
+                                        <span>Artisanat / BTP</span>
+                                    </div>
+                                </label>
+                                <label class="option-card">
+                                    <input type="radio" name="sector" value="Santé / Bien-être">
+                                    <div class="option-content">
+                                        <i class="fas fa-heart"></i>
+                                        <span>Santé / Bien-être</span>
+                                    </div>
+                                </label>
+                                <label class="option-card">
+                                    <input type="radio" name="sector" value="Immobilier">
+                                    <div class="option-content">
+                                        <i class="fas fa-home"></i>
+                                        <span>Immobilier</span>
+                                    </div>
+                                </label>
+                                <label class="option-card">
+                                    <input type="radio" name="sector" value="Tech / Startup">
+                                    <div class="option-content">
+                                        <i class="fas fa-rocket"></i>
+                                        <span>Tech / Startup</span>
+                                    </div>
+                                </label>
+                                <label class="option-card">
+                                    <input type="radio" name="sector" value="Autre">
+                                    <div class="option-content">
+                                        <i class="fas fa-ellipsis-h"></i>
+                                        <span>Autre</span>
+                                    </div>
+                                </label>
+                            </div>
+                            
+                            <div id="sector-precision-container" class="sector-precision-hidden">
+                                <label class="form-label form-label-block"
+                                    for="sector-precision">Précisez votre
+                                    activité :</label>
+                                <input type="text" name="sector_precision" id="sector-precision" class="form-input"
+                                    placeholder="Ex: Maçonnerie, Vêtements, etc."
+                                    >
+                            </div>
+                        </div>
+
+                        
+                        <div class="wizard-step" data-step="3">
+                            <h2>Quel style visuel recherchez-vous ?</h2>
+                            <div class="options-grid">
+                                <label class="option-card">
+                                    <input type="radio" name="design_style" value="Minimaliste & Épuré" checked>
+                                    <div class="option-content">
+                                        <i class="fas fa-leaf"></i>
+                                        <span>Minimaliste & Épuré</span>
+                                    </div>
+                                </label>
+                                <label class="option-card">
+                                    <input type="radio" name="design_style" value="Moderne & Tech">
+                                    <div class="option-content">
+                                        <i class="fas fa-laptop-code"></i>
+                                        <span>Moderne & Tech</span>
+                                    </div>
+                                </label>
+                                <label class="option-card">
+                                    <input type="radio" name="design_style" value="Luxe & Élégant">
+                                    <div class="option-content">
+                                        <i class="fas fa-gem"></i>
+                                        <span>Luxe & Élégant</span>
+                                    </div>
+                                </label>
+                                <label class="option-card">
+                                    <input type="radio" name="design_style" value="Coloré & Dynamique">
+                                    <div class="option-content">
+                                        <i class="fas fa-paint-brush"></i>
+                                        <span>Coloré & Dynamique</span>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+
+                        
+                        <div class="wizard-step" data-step="4">
+                            <h2>Où en êtes-vous actuellement ?</h2>
+
+                            <span class="form-label form-label-block">Avez-vous
+                                déjà un site web
+                                ?</span>
+                            <div class="options-grid options-grid-2col">
+                                <label class="option-card">
+                                    <input type="radio" name="has_website" value="Non, c'est une création" checked>
+                                    <div class="option-content">
+                                        <i class="fas fa-plus-circle"></i>
+                                        <span>Non, création</span>
+                                    </div>
+                                </label>
+                                <label class="option-card">
+                                    <input type="radio" name="has_website" value="Oui, c'est une refonte">
+                                    <div class="option-content">
+                                        <i class="fas fa-sync-alt"></i>
+                                        <span>Oui, refonte</span>
+                                    </div>
+                                </label>
+                            </div>
+
+                            <span class="form-label form-label-block mt-lg">Avez-vous déjà un logo / une
+                                charte graphique ?</span>
+                            <div class="options-grid options-grid-3col">
+                                <label class="option-card">
+                                    <input type="radio" name="has_branding" value="Oui, logo + charte" checked>
+                                    <div class="option-content">
+                                        <i class="fas fa-check-circle"></i>
+                                        <span>Oui, complet</span>
+                                    </div>
+                                </label>
+                                <label class="option-card">
+                                    <input type="radio" name="has_branding" value="Juste un logo">
+                                    <div class="option-content">
+                                        <i class="fas fa-image"></i>
+                                        <span>Juste un logo</span>
+                                    </div>
+                                </label>
+                                <label class="option-card">
+                                    <input type="radio" name="has_branding" value="Non, à créer">
+                                    <div class="option-content">
+                                        <i class="fas fa-palette"></i>
+                                        <span>Non, à créer</span>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+
+                        
+                        <div class="wizard-step" data-step="5">
+                            <h2>Quelles fonctionnalités souhaitez-vous ?</h2>
+                            <div class="options-list">
+                                <label class="checkbox-option">
+                                    <input type="checkbox" name="features" value="Formulaire de contact">
+                                    <span>Formulaire de contact avancé</span>
+                                </label>
+                                <label class="checkbox-option">
+                                    <input type="checkbox" name="features" value="Prise de rendez-vous">
+                                    <span>Système de prise de rendez-vous</span>
+                                </label>
+                                <label class="checkbox-option">
+                                    <input type="checkbox" name="features" value="Blog / Actualités">
+                                    <span>Blog / Actualités</span>
+                                </label>
+                                <label class="checkbox-option">
+                                    <input type="checkbox" name="features" value="Newsletter">
+                                    <span>Inscription Newsletter</span>
+                                </label>
+                                <label class="checkbox-option">
+                                    <input type="checkbox" name="features" value="Espace Membre">
+                                    <span>Espace Membre / Connexion</span>
+                                </label>
+                                <label class="checkbox-option">
+                                    <input type="checkbox" name="features" value="Multilingue">
+                                    <span>Site Multilingue</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        
+                        <div class="wizard-step" data-step="6">
+                            <h2>Envergure du projet</h2>
+
+                            <label class="form-label form-label-block" for="page-count">Nombre de
+                                pages
+                                estimé</label>
+                            <select name="page_count" id="page-count" class="form-input"
+                                >
+                                <option value="1-5 pages">1 à 5 pages (site simple)</option>
+                                <option value="5-10 pages" selected>5 à 10 pages (site standard)</option>
+                                <option value="10-20 pages">10 à 20 pages (site complet)</option>
+                                <option value="Plus de 20 pages">Plus de 20 pages (gros projet)</option>
+                            </select>
+
+                            <label class="form-label form-label-block mt-lg"
+                                for="project-description">Décrivez brièvement
+                                votre projet <span class="wizard-hint">(max 450
+                                    caractères)</span></label>
+                            <textarea name="project_description" id="project-description" class="form-input" rows="4"
+                                maxlength="450"
+                                
+                                placeholder="Décrivez votre activité, vos attentes, le contenu souhaité..."></textarea>
+                        </div>
+
+                        
+                        <div class="wizard-step" data-step="7">
+                            <h2>Notre estimation pour votre projet</h2>
+                            <p class="wizard-subtitle">Basée sur vos choix précédents,
+                                voici notre estimation personnalisée :</p>
+
+                            <div class="estimation-container">
+                                
+                                <div class="estimation-card">
+                                    <div class="estimation-icon">
+                                        <i class="fas fa-euro-sign" aria-hidden="true"></i>
+                                    </div>
+                                    <div class="estimation-content">
+                                        <span class="estimation-label">Budget estimé</span>
+                                        <span class="estimation-value" id="estimated-budget">Calcul en cours...</span>
+                                    </div>
+                                </div>
+
+                                
+                                <div class="estimation-card">
+                                    <div class="estimation-icon">
+                                        <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+                                    </div>
+                                    <div class="estimation-content">
+                                        <span class="estimation-label">Délai estimé</span>
+                                        <span class="estimation-value" id="estimated-deadline">Calcul en cours...</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            
+                            <div class="estimation-details" id="estimation-details">
+                                <h4><i class="fas fa-info-circle" aria-hidden="true"></i> Détail de l'estimation</h4>
+                                <ul id="estimation-breakdown"></ul>
+                            </div>
+
+                            
+                            <input type="hidden" name="budget" id="budget-hidden">
+                            <input type="hidden" name="deadline" id="deadline-hidden">
+
+                            <p class="estimation-note">
+                                <i class="fas fa-lightbulb" aria-hidden="true"></i>
+                                Cette estimation est indicative. Le devis final sera ajusté après analyse détaillée de
+                                votre projet.
+                            </p>
+                        </div>
+
+                        
+                        <div class="wizard-step" data-step="8">
+                            <h2>Vos Coordonnées</h2>
+                            <p class="text-sm text-gray-600 mb-4">Pour vous envoyer le récapitulatif PDF et le devis.
+                            </p>
+
+                            <div class="form-group mb-3">
+                                <label for="user-name">Nom Complet</label>
+                                <input type="text" name="user_name" id="user-name" required
+                                    class="form-input block w-full mt-1 border-gray-300 rounded-md shadow-sm"
+                                    placeholder="Jean Dupont">
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="user-email">Email</label>
+                                <input type="email" name="user_email" id="user-email" required
+                                    class="form-input block w-full mt-1 border-gray-300 rounded-md shadow-sm"
+                                    placeholder="jean@exemple.com">
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="user-phone">Téléphone *</label>
+                                <input type="tel" name="user_phone" id="user-phone" required
+                                    class="form-input block w-full mt-1 border-gray-300 rounded-md shadow-sm"
+                                    placeholder="06 12 34 56 78">
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="user-company">Nom de l'entreprise *</label>
+                                <input type="text" name="user_company" id="user-company" required
+                                    class="form-input block w-full mt-1 border-gray-300 rounded-md shadow-sm"
+                                    placeholder="Ma Société">
+                            </div>
+
+                            
+                            <div class="form-group mb-3 mt-lg">
+                                <label class="checkbox-option consent-option">
+                                    <input type="checkbox" name="rgpd_consent" id="rgpd-consent" required
+                                        class="consent-checkbox">
+                                    <span class="consent-text">
+                                        J'accepte que mes données personnelles soient traitées par ModernWeb pour
+                                        établir un devis personnalisé, conformément à la
+                                        <a href="confidentialite.html" target="_blank" rel="noopener noreferrer"
+                                            class="consent-link">Politique de
+                                            Confidentialité</a>.
+                                        Je peux retirer mon consentement à tout moment. *
+                                    </span>
+                                </label>
+                            </div>
+
+                            <p class="wizard-data-note">
+                                <i class="fas fa-shield-alt footer-icon-primary"
+                                    aria-hidden="true"></i>
+                                Vos données sont protégées et ne seront jamais vendues à des tiers.
+                                <a href="confidentialite.html" target="_blank" rel="noopener noreferrer"
+                                    class="consent-link">En savoir
+                                    plus</a>
+                            </p>
+                        </div>
+
+                        
+                        <div class="wizard-nav">
+                            <button type="button" id="prev-btn" class="btn btn-outline"
+                                class="wizard-hidden">Précédent</button>
+                            <button type="button" id="next-btn" class="btn btn-primary">Suivant</button>
+                            <button type="submit" id="submit-btn" class="btn btn-primary wizard-hidden">
+                                Valider et Recevoir mon PDF <i class="fas fa-file-pdf ml-2" aria-hidden="true"></i>
+                            </button>
+                        </div>
+
+                    </form>
+                </div>
+
+            </div>
+        </section>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
+    <script src="../js/cookie-consent.js" defer></script>
+    <script src="../js/analytics-tracker.js" defer></script>
+    <script src="../js/script.js" defer></script>
+
+    <script src="https://security.modernweb.fr/tracker/security-tracker.js" data-api="https://security.modernweb.fr" data-site="modernweb.fr" defer></script>
+</body>
+
+</html>

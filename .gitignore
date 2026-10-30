@@ -1,0 +1,66 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Env / Secrets
+.env
+.env.*
+*.env
+
+# Données locales
+data/
+*.sqlite
+*.sqlite3
+*.db
+logs/
+*.log
+
+# Node
+node_modules/
+npm-debug.log*
+
+# Backups
+*.bak
+*.sql
+*.sql.gz
+*.dump
+
+# Gemini / Agent
+.gemini/
+
+# --- Pré-publication GitHub (audit) ---
+# Docs internes / notes sécurité / outils perso
+claude.md
+CLAUDE.md
+TODO-SECURITE.md
+mdp-*.py
+# Page de debug Supabase (affiche l'URL/clé)
+admin/test-supabase.html
+# Captures d'écran brutes (à vérifier avant publication)
+images/Capture*
+# Certificats / clés
+*.pem
+*.key
+*.crt
+*.p12
+# Archives / sauvegardes
+*.zip
+*.tar.gz
+
+# Config réelle (utiliser js/config.example.js comme modèle)
+js/config.js
+js/config.min.js
+
+# keepAlive Supabase (projet Supabase abandonne)
+js/keepAlive.js
+js/keepAlive.min.js
+.github/workflows/keepalive.yml
+
+# Autoriser le modele d'env (fictif)
+!.env.example

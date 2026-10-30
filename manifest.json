@@ -1,0 +1,27 @@
+{
+    "name": "ModernWeb - Agence Web Lille",
+    "short_name": "ModernWeb",
+    "description": "Agence web spécialisée dans la création de sites internet",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#F8FAFC",
+    "theme_color": "#2563EB",
+    "orientation": "portrait-primary",
+    "icons": [
+        {
+            "src": "images/android-chrome-192x192.webp",
+            "sizes": "192x192",
+            "type": "image/webp"
+        },
+        {
+            "src": "images/android-chrome-512x512.webp",
+            "sizes": "512x512",
+            "type": "image/webp"
+        }
+    ],
+    "lang": "fr",
+    "categories": [
+        "business",
+        "web"
+    ]
+}

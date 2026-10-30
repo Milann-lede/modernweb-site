@@ -1,0 +1,199 @@
+# ============================================
+# File: .htaccess
+# Description: Configuration Apache sécurisée pour ModernWeb
+# Standards: OWASP ASVS v4.0, NIST SP 800-63B, RFC 6797/7034
+# Author: ModernWeb
+# Last Updated: 2026-01-22
+# ============================================
+
+# ----------------------------------------
+# 1. ACTIVATION DU MOTEUR DE RÉÉCRITURE
+# ----------------------------------------
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    
+    # ----- HTTPS FORCE (Décommenter en production) -----
+    # Standard: RFC 6797 (HSTS)
+    # RewriteCond %{HTTPS} off
+    # RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+    
+    # ----- Bloquer les requêtes avec User-Agent vide ou malveillants -----
+    RewriteCond %{HTTP_USER_AGENT} ^$ [OR]
+    RewriteCond %{HTTP_USER_AGENT} (nikto|sqlmap|havij|acunetix|w3af|nessus|openvas) [NC]
+    RewriteRule .* - [F,L]
+    
+    # ----- Bloquer l'accès direct aux fichiers PHP dans le dossier admin -----
+    # (Sauf index.html et login.html qui sont des HTML)
+</IfModule>
+
+# ----------------------------------------
+# 2. EN-TÊTES DE SÉCURITÉ HTTP
+# Standard: OWASP ASVS 14.4
+# ----------------------------------------
+<IfModule mod_headers.c>
+    # ----- HSTS (HTTP Strict Transport Security) -----
+    # Force HTTPS pendant 1 an, inclut les sous-domaines
+    # RFC 6797
+    Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains" env=HTTPS
+    
+    # ----- Anti-Clickjacking -----
+    # Empêche l'intégration du site dans une iframe externe
+    # RFC 7034
+    Header always set X-Frame-Options "SAMEORIGIN"
+    
+    # ----- Prévention MIME Sniffing -----
+    # Empêche le navigateur de deviner le type MIME
+    # OWASP Recommendation
+    Header always set X-Content-Type-Options "nosniff"
+    
+    # ----- Protection XSS Legacy -----
+    # Pour les navigateurs anciens (IE)
+    Header always set X-XSS-Protection "1; mode=block"
+    
+    # ----- Content-Security-Policy -----
+    # Contrôle les sources de contenu autorisées
+    # OWASP ASVS 14.4.3
+    # Note: 'unsafe-inline' requis pour le CSS inline actuel - à durcir progressivement
+    Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com https://unpkg.com https://www.googletagmanager.com https://www.google-analytics.com https://cdn.emailjs.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: https: blob:; connect-src 'self' https://*.supabase.co https://api.emailjs.com https://www.google-analytics.com; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self' https://api.emailjs.com; frame-ancestors 'self';"
+    
+    # ----- Referrer-Policy -----
+    # Limite les informations envoyées dans le header Referer
+    # W3C Recommendation
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+    
+    # ----- Permissions-Policy (anciennement Feature-Policy) -----
+    # Désactive les APIs non utilisées
+    # W3C Recommendation
+    Header always set Permissions-Policy "geolocation=(), microphone=(), camera=(), payment=(), usb=(), magnetometer=(), gyroscope=(), accelerometer=()"
+    
+    # ----- Cross-Origin Policies -----
+    # Isolation des ressources cross-origin
+    Header always set Cross-Origin-Opener-Policy "same-origin-allow-popups"
+    Header always set Cross-Origin-Resource-Policy "same-site"
+    
+    # ----- Cache-Control pour les ressources sensibles -----
+    <FilesMatch "\.(html|php|json)$">
+        Header set Cache-Control "no-store, no-cache, must-revalidate, max-age=0"
+        Header set Pragma "no-cache"
+    </FilesMatch>
+    
+    # ----- Masquer la signature du serveur -----
+    Header unset Server
+    Header unset X-Powered-By
+</IfModule>
+
+# ----------------------------------------
+# 3. PROTECTION DES FICHIERS SENSIBLES
+# Standard: OWASP ASVS 14.2.3
+# ----------------------------------------
+
+# ----- Bloquer l'accès aux fichiers sensibles -----
+<FilesMatch "(?i)\.(sql|log|bak|backup|env|config|ini|git|gitignore|htpasswd|htaccess|md|py|pyc|sh|yml|yaml|lock|json)$">
+    <IfModule mod_authz_core.c>
+        Require all denied
+    </IfModule>
+    <IfModule !mod_authz_core.c>
+        Order allow,deny
+        Deny from all
+    </IfModule>
+</FilesMatch>
+
+# ----- Autoriser manifest.json pour PWA -----
+<Files "manifest.json">
+    <IfModule mod_authz_core.c>
+        Require all granted
+    </IfModule>
+</Files>
+
+# ----- Bloquer les fichiers spécifiques -----
+<FilesMatch "^(claude|SECURITY|TODO-SECURITE|README|package|package-lock|composer|\.env|\.git)">
+    <IfModule mod_authz_core.c>
+        Require all denied
+    </IfModule>
+</FilesMatch>
+
+# ----- Bloquer l'accès aux dossiers sensibles -----
+<IfModule mod_rewrite.c>
+    RewriteRule ^(logs|sql|email_templates|\.git|\.vscode|\.github)/ - [F,L]
+    RewriteRule ^admin/sql/ - [F,L]
+</IfModule>
+
+# ----------------------------------------
+# 4. PROTECTION CONTRE LES ATTAQUES
+# ----------------------------------------
+
+# ----- Limite la taille des requêtes POST -----
+# Protection contre les attaques par payload massif
+<IfModule mod_php.c>
+    php_value post_max_size 10M
+    php_value upload_max_filesize 5M
+    php_value max_input_time 60
+    php_value max_execution_time 30
+</IfModule>
+
+# ----- Désactiver le listing des répertoires -----
+Options -Indexes
+
+# ----- Désactiver l'exécution de scripts dans les dossiers d'upload -----
+<IfModule mod_rewrite.c>
+    RewriteRule ^images/.*\.php$ - [F,L]
+    RewriteRule ^logs/.*\.php$ - [F,L]
+</IfModule>
+
+# ----------------------------------------
+# 5. TYPES MIME ET COMPRESSION
+# ----------------------------------------
+
+# ----- Configuration MIME -----
+<IfModule mod_mime.c>
+    AddType application/javascript .js
+    AddType text/css .css
+    AddType image/webp .webp
+    AddType image/svg+xml .svg
+    AddType application/json .json
+    AddType font/woff2 .woff2
+</IfModule>
+
+# ----- Compression GZIP -----
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript application/javascript application/json application/xml image/svg+xml
+</IfModule>
+
+# ----------------------------------------
+# 6. CACHE NAVIGATEUR (Performance + Sécurité)
+# ----------------------------------------
+<IfModule mod_expires.c>
+    ExpiresActive On
+    
+    # Ressources statiques - cache long
+    ExpiresByType image/webp "access plus 1 year"
+    ExpiresByType image/jpeg "access plus 1 year"
+    ExpiresByType image/png "access plus 1 year"
+    ExpiresByType image/svg+xml "access plus 1 year"
+    ExpiresByType font/woff2 "access plus 1 year"
+    ExpiresByType text/css "access plus 1 month"
+    ExpiresByType application/javascript "access plus 1 month"
+    
+    # HTML et JSON - pas de cache (sécurité)
+    ExpiresByType text/html "access plus 0 seconds"
+    ExpiresByType application/json "access plus 0 seconds"
+</IfModule>
+
+# ----------------------------------------
+# 7. PROTECTION ADMIN SUPPLÉMENTAIRE
+# ----------------------------------------
+
+# ----- Rate limiting basique via mod_evasive (si disponible) -----
+# Note: Nécessite mod_evasive installé sur le serveur
+# <IfModule mod_evasive24.c>
+#     DOSHashTableSize 3097
+#     DOSPageCount 5
+#     DOSSiteCount 50
+#     DOSPageInterval 1
+#     DOSSiteInterval 1
+#     DOSBlockingPeriod 60
+# </IfModule>
+
+# ----------------------------------------
+# FIN DE LA CONFIGURATION
+# ----------------------------------------
